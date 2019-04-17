@@ -20,14 +20,37 @@ $(document).ready(function() {
     // get the maker function for the kind of dancer we're supposed to make
     var dancerMakerFunction = window[dancerMakerFunctionName];
 
-    // make a dancer with a random position
-
+    // audio file
+    // var audio = new Audio('/Users/student/hrsf116-subclass-dance-party/battletheme.mp3');
+    // audio.volume = 0.2;
+    // audio.play();
     var dancer = new dancerMakerFunction(
       $("body").height() * Math.random(),
       $("body").width() * Math.random(),
       Math.random() * 1000
     );
-    $('body').append(dancer.$node);
+    
+    $('.battleField').append(dancer.$node);
+    $('.dancer').hover(function(){   
+      console.log('hi')
+      $(this).toggle();
+    });
   });
+
+  $('.lineUpButton').on('click', function(event){
+    $('.dancer').css({top:30});
+  });
+
+  $('.dancer').on('click', function(event) {
+    console.log('hi')
+    // $(this).css("cursor","pointer");
+    // $(this).animate({width: "50%", height: "50%"}, 'slow');
+    $(this).toggle()
+  });
+  
+  $('.dancer').mouseleave(function(){   
+    $(this).animate({width: "28%"}, 'slow');
+  });
+
 });
 
